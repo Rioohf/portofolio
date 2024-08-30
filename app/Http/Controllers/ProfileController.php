@@ -77,20 +77,20 @@ class ProfileController extends Controller
     }
 
     /**
- * Show the form for editing the specified resource.
- */
-public function edit($id)
-{
-    $data = Profile::findOrFail($id);
-    return view('profile.edit', compact('data'));
-}
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        $data = Profile::findOrFail($id);
+        return view('profile.edit', compact('data'));
+    }
 
-/**
- * Update the specified resource in storage.
- */
-public function update(Request $request, $id)
-{
-    $profile = Profile::findOrFail($id);
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $profile = Profile::findOrFail($id);
         $request->validate([
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nama_lengkap' => 'required|string|max:55',
@@ -133,9 +133,16 @@ public function update(Request $request, $id)
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Profile $id)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
     {
-        Profile::where('id', $id)->delete();
-        return redirect()->to('profile')->with('message', 'Data Berhasil di Hapus!');
+        $profile = Profile::find($id);
+        if ($profile) {
+            $profile->delete();
+        }
+
+        return redirect()->route('profile.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

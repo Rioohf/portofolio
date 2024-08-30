@@ -16,7 +16,7 @@
                 <label for="" class="form-label">Posisi *</label>
             </div>
             <div class="col-sm-5">
-                <input value="{{$pengalaman->posisi}}" required type="number" class="form-control" name="posisi" placeholder="Posisi">
+                <input value="{{$pengalaman->posisi}}" required type="text" class="form-control" name="posisi" placeholder="Posisi">
             </div>
         </div>
 
@@ -26,7 +26,7 @@
                 <label for="" class="form-label">Perusahaan *</label>
             </div>
             <div class="col-sm-5">
-                <input value="{{$pengalaman->perusahaan}}" required type="number" class="form-control" name="perusahaan" placeholder="Perusahaan">
+                <input value="{{$pengalaman->perusahaan}}" required type="text" class="form-control" name="perusahaan" placeholder="Perusahaan">
             </div>
         </div>
 

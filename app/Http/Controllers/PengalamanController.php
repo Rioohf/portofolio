@@ -51,8 +51,7 @@ class PengalamanController extends Controller
      */
     public function edit(Pengalaman $pengalaman)
     {
-        $edit = Pengalaman::findOrFail($pengalaman);
-        return view('pengalaman.edit', compact('edit'));
+        return view('pengalaman.edit', compact('pengalaman'));
     }
 
     /**
@@ -60,7 +59,7 @@ class PengalamanController extends Controller
      */
     public function update(Request $request, Pengalaman $pengalaman)
     {
-        Pengalaman::where('id', $pengalaman)->update([
+        $pengalaman->update([
             'posisi' => $request->posisi,
             'perusahaan' => $request->perusahaan,
             'deskripsi' => $request->deskripsi,
@@ -73,9 +72,16 @@ class PengalamanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pengalaman $pengalaman)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
     {
-        Pengalaman::where('id', $pengalaman)->delete();
-        return redirect()->to('pengalaman')->with('message', 'Data Berhasil di Hapus!');
+        $pengalaman = Pengalaman::find($id);
+        if ($pengalaman) {
+            $pengalaman->delete();
+        }
+
+        return redirect()->route('pengalaman.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

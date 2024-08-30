@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pengalaman extends Model
 {
     use HasFactory;
-    protected $table = 'pengalamans';
+    protected $table = 'pengalaman';
     protected $fillable = ['posisi', 'perusahaan', 'deskripsi', 'tahun'];
 }

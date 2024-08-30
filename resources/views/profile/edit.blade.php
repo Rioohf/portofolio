@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Edit Profile')
+
 @section('content')
 <form action="{{route('profile.update', $data->id)}}" method="post" enctype="multipart/form-data">
 @csrf

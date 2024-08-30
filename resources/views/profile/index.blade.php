@@ -1,7 +1,9 @@
 @extends('layouts.app')
+@section('title', 'Data Profile')
+
 @section('content')
 <div class="card">
-    <div class="card-header bg-secondary text-white">Profiles</div>
+    {{-- <div class="card-header bg-secondary text-white">Profiles</div> --}}
     <div class="card-body">
         <a href="{{route('profile.create')}}" class="btn btn-outline-primary btn-sm mb-2">ADD</a>
         {{-- <a href="{{route('profile.recycle')}}" class="btn btn-outline-warning btn-sm mb-2 position-relative">
@@ -28,7 +30,7 @@
                     <tr>
                         <td>{{$index + 1}}</td>
                         <td class="justify-content-center"><a href="{{route('profile.edit', $item->id)}}" class="btn btn-success btn-sm m-1">Edit</a>
-                        <form style="display: inline;" action="{{route('profile.destroy', $item->id )}}" onsubmit="return confirm('Akan di delete sementara?')" method="post">
+                        <form style="display: inline;" action="{{route('profile.destroy', $item->id )}}" onsubmit="return confirm('Akan di delete?')" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm m-1">Delete</button>

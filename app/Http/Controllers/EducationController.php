@@ -51,11 +51,11 @@ class EducationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Education $education)
+    public function edit($id)
     {
+        $education = Education::findOrFail($id);
         $profiles = Profile::get();
-        $edit = Education::find($education);
-        return view('education.edit', compact('profiles', 'edit'));
+        return view('education.edit', compact('profiles', 'education'));
     }
 
     /**
@@ -63,7 +63,7 @@ class EducationController extends Controller
      */
     public function update(Request $request, Education $education)
     {
-        Education::where('id', $education)->update([
+        $education->update([
             'profile_id' => $request->profile_id,
             'nama_sekolah' => $request->nama_sekolah,
             'jurusan' => $request->jurusan,
@@ -76,9 +76,13 @@ class EducationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Education $education)
+    public function destroy($id)
     {
-        Education::where('id', $education)->delete();
-        return redirect()->to('education')->with('message', 'Data Berhasil di Hapus!');
+        $education = Education::find($id);
+        if ($education) {
+            $education->delete();
+        }
+
+        return redirect()->route('education.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

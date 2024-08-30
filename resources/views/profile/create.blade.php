@@ -1,4 +1,6 @@
 @extends('layouts.app')
+@section('title', 'Tambah Profile')
+
 @section('content')
 <form action="{{route('profile.store')}}" method="post" enctype="multipart/form-data">
 @csrf

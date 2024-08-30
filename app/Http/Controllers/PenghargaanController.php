@@ -52,17 +52,17 @@ class PenghargaanController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Penghargaan $penghargaan)
-{
-    $education = Education::get();
-    return view('penghargaan.edit', compact('education', 'penghargaan'));
-}
+    {
+        $education = Education::get();
+        return view('penghargaan.edit', compact('education', 'penghargaan'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Penghargaan $penghargaan)
     {
-        Penghargaan::where('id', $penghargaan)->update([
+        $penghargaan->update([
             'education_id' => $request->education_id,
             'juara' => $request->juara,
             'perlombaan' => $request->perlombaan,
